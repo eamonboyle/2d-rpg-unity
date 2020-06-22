@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Player : Character
 {
+    public Transform MyTarget { get; set; }
+
     [SerializeField]
     private Stat health;
     [SerializeField]
@@ -20,8 +22,6 @@ public class Player : Character
 
     private Exits exitIndex = Exits.DOWN;
 
-    private Transform target;
-
     private Vector2[] directions = new Vector2[]
     {
         new Vector2(0f, 1f), // up
@@ -37,9 +37,6 @@ public class Player : Character
     {
         health.Initialize(initHealth, initHealth);
         mana.Initialize(initMana, initMana);
-
-        // just for debugging
-        target = GameObject.Find("Target").transform;
 
         base.Start();
     }
@@ -101,7 +98,7 @@ public class Player : Character
         // attack input
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (!attacking && !Moving && InLineOfSight())
+            if (MyTarget != null && !attacking && !Moving && InLineOfSight())
             {
                 attackRoutine = StartCoroutine(Attack());
             }
@@ -123,7 +120,7 @@ public class Player : Character
 
     private bool InLineOfSight()
     {
-        Vector2 directionToTarget = (target.position - transform.position).normalized;
+        Vector2 directionToTarget = (MyTarget.position - transform.position).normalized;
 
         Vector2 facing = directions[(int)exitIndex]; // direction of facing
 
