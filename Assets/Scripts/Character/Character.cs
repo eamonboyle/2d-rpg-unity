@@ -15,10 +15,12 @@ public abstract class Character : MonoBehaviour
     [SerializeField]
     private float speed;
 
-    private Animator myAnimator;
     private Rigidbody2D myRigidbody;
 
+    protected Animator myAnimator;
     protected Vector2 direction;
+    protected bool attacking = false;
+    protected Coroutine attackRoutine;
 
     protected virtual void Start()
     {
@@ -53,6 +55,12 @@ public abstract class Character : MonoBehaviour
 
             myAnimator.SetFloat("x", direction.x);
             myAnimator.SetFloat("y", direction.y);
+
+            StopAttack();
+        }
+        else if (attacking)
+        {
+            ActivateLayer("Attack");
         }
         else
         {
@@ -69,5 +77,15 @@ public abstract class Character : MonoBehaviour
         }
 
         myAnimator.SetLayerWeight(myAnimator.GetLayerIndex(layerName), 1);
+    }
+
+    public void StopAttack()
+    {
+        if (attackRoutine != null)
+        {
+            StopCoroutine(attackRoutine);
+            attacking = false;
+            myAnimator.SetBool("attack", attacking);
+        }
     }
 }
