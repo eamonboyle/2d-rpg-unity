@@ -48,9 +48,12 @@ public class Player : Character
         base.Update();
     }
 
-    public void CastSpell()
+    public void CastSpell(int spellIndex)
     {
-        Instantiate(spellPrefab[0], exitPoints[(int)exitIndex].position, Quaternion.identity);
+        if (MyTarget != null && !attacking && !Moving && InLineOfSight())
+        {
+            attackRoutine = StartCoroutine(Attack(spellIndex));
+        }
     }
 
     private void GetInput()
@@ -98,14 +101,10 @@ public class Player : Character
         // attack input
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (MyTarget != null && !attacking && !Moving && InLineOfSight())
-            {
-                attackRoutine = StartCoroutine(Attack());
-            }
         }
     }
 
-    private IEnumerator Attack()
+    private IEnumerator Attack(int spellIndex)
     {
         attacking = true;
 
@@ -113,7 +112,7 @@ public class Player : Character
 
         yield return new WaitForSeconds(1); // hard coded cast time for debugging
 
-        CastSpell();
+        Instantiate(spellPrefab[spellIndex], exitPoints[(int)exitIndex].position, Quaternion.identity);
 
         StopAttack();
     }
