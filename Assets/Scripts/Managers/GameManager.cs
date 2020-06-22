@@ -33,9 +33,15 @@ public class GameManager : MonoBehaviour
                 // target the new NPC and select it's hit box
                 currentTarget = hit.collider.GetComponent<NPC>();
                 player.MyTarget = currentTarget.Select();
+
+                // show the target frame
+                UIManager.Instance.ShowTargetFrame(currentTarget);
             }
             else
             {
+                // hide the target frame
+                UIManager.Instance.HideTargetFrame();
+
                 // clicking on empty space, clear targets
                 if (currentTarget != null)
                 {

@@ -14,6 +14,14 @@ public abstract class Character : MonoBehaviour
         }
     }
 
+    public Stat Health
+    {
+        get
+        {
+            return health;
+        }
+    }
+
     [SerializeField]
     private float speed;
 
