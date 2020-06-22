@@ -329,6 +329,7 @@ MonoBehaviour:
   initHealth: 25
   health: {fileID: 978280579482701803}
   hitBox: {fileID: 286104491815440059}
+  portrait: {fileID: 21300000, guid: d403604e5f35bfe4a8dcd8a7d349f04c, type: 3}
   healthGroup: {fileID: 6989249140941093513}
 --- !u!212 &286104490526189644
 SpriteRenderer:

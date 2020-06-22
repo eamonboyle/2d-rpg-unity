@@ -30,6 +30,9 @@ public class UIManager : MonoBehaviour
 
     private Stat healthStat;
 
+    [SerializeField]
+    private Image portraitFrame;
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -65,8 +68,11 @@ public class UIManager : MonoBehaviour
         targetFrame.SetActive(true);
         healthStat.Initialize(target.Health.MyCurrentValue, target.Health.MyMaxValue);
 
+        portraitFrame.sprite = target.Portrait;
+
         // listen for the health changed event and update target frame
         target.healthChanged += new HealthChanged(UpdateTargetFrame);
+        target.npcRemoved += new NPCRemoved(HideTargetFrame);
     }
 
     public void HideTargetFrame()
