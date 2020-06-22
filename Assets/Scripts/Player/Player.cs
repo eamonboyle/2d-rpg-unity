@@ -12,6 +12,9 @@ public class Player : Character
     private float initHealth = 100;
     private float initMana = 50;
 
+    [SerializeField]
+    private GameObject[] spellPrefab;
+
     protected override void Start()
     {
         health.Initialize(initHealth, initHealth);
@@ -25,6 +28,11 @@ public class Player : Character
         GetInput();
 
         base.Update();
+    }
+
+    public void CastSpell()
+    {
+        Instantiate(spellPrefab[0], transform.position, Quaternion.identity);
     }
 
     private void GetInput()
@@ -81,7 +89,9 @@ public class Player : Character
 
         myAnimator.SetBool("attack", attacking);
 
-        yield return new WaitForSeconds(3); // hard coded cast time for debugging
+        yield return new WaitForSeconds(1); // hard coded cast time for debugging
+
+        CastSpell();
 
         StopAttack();
     }
