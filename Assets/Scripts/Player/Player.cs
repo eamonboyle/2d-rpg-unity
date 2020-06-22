@@ -15,10 +15,31 @@ public class Player : Character
     [SerializeField]
     private GameObject[] spellPrefab;
 
+    [SerializeField]
+    private Transform[] exitPoints;
+
+    private Exits exitIndex = Exits.DOWN;
+
+    private Transform target;
+
+    private Vector2[] directions = new Vector2[]
+    {
+        new Vector2(0f, 1f), // up
+        new Vector2(1f, 0f), // left
+        new Vector2(0f, -1f), // down
+        new Vector2(-1f, 0f) // right
+    };
+
+    [SerializeField]
+    private float fieldOfView = 180f;
+
     protected override void Start()
     {
         health.Initialize(initHealth, initHealth);
         mana.Initialize(initMana, initMana);
+
+        // just for debugging
+        target = GameObject.Find("Target").transform;
 
         base.Start();
     }
@@ -32,7 +53,7 @@ public class Player : Character
 
     public void CastSpell()
     {
-        Instantiate(spellPrefab[0], transform.position, Quaternion.identity);
+        Instantiate(spellPrefab[0], exitPoints[(int)exitIndex].position, Quaternion.identity);
     }
 
     private void GetInput()
@@ -55,28 +76,32 @@ public class Player : Character
         // movement inputs
         if (Input.GetKey(KeyCode.W))
         {
+            exitIndex = Exits.UP;
             direction += Vector2.up;
         }
 
         if (Input.GetKey(KeyCode.S))
         {
+            exitIndex = Exits.DOWN;
             direction += Vector2.down;
         }
 
         if (Input.GetKey(KeyCode.A))
         {
+            exitIndex = Exits.LEFT;
             direction += Vector2.left;
         }
 
         if (Input.GetKey(KeyCode.D))
         {
+            exitIndex = Exits.RIGHT;
             direction += Vector2.right;
         }
 
         // attack input
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (!attacking && !Moving)
+            if (!attacking && !Moving && InLineOfSight())
             {
                 attackRoutine = StartCoroutine(Attack());
             }
@@ -94,5 +119,21 @@ public class Player : Character
         CastSpell();
 
         StopAttack();
+    }
+
+    private bool InLineOfSight()
+    {
+        Vector2 directionToTarget = (target.position - transform.position).normalized;
+
+        Vector2 facing = directions[(int)exitIndex]; // direction of facing
+
+        float angleToTarget = Vector2.Angle(facing, directionToTarget);
+
+        if (angleToTarget < fieldOfView / 2f)
+        {
+            return true;
+        }
+
+        return false;
     }
 }
