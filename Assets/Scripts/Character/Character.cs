@@ -17,7 +17,13 @@ public abstract class Character : MonoBehaviour
     [SerializeField]
     private float speed;
 
+    [SerializeField]
+    private float initHealth;
+
     private Rigidbody2D myRigidbody;
+
+    [SerializeField]
+    protected Stat health;
 
     protected Animator myAnimator;
     protected Vector2 direction;
@@ -31,6 +37,8 @@ public abstract class Character : MonoBehaviour
     {
         myAnimator = GetComponent<Animator>();
         myRigidbody = GetComponent<Rigidbody2D>();
+
+        health.Initialize(initHealth, initHealth);
     }
 
     protected virtual void Update()
@@ -96,6 +104,20 @@ public abstract class Character : MonoBehaviour
             StopCoroutine(attackRoutine);
             attacking = false;
             myAnimator.SetBool("attack", attacking);
+        }
+    }
+
+    public virtual void TakeDamage(float damage)
+    {
+        // reduce health
+        health.MyCurrentValue -= damage;
+
+        if (health.MyCurrentValue <= 0)
+        {
+            // die
+            print("DIE");
+
+            myAnimator.SetTrigger("die");
         }
     }
 }

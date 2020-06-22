@@ -7,13 +7,10 @@ public class Player : Character
     public Transform MyTarget { get; set; }
 
     [SerializeField]
-    private Stat health;
-    [SerializeField]
     private Stat mana;
 
     private SpellBook spellBook;
 
-    private float initHealth = 100;
     private float initMana = 50;
 
     [SerializeField]
@@ -34,7 +31,6 @@ public class Player : Character
 
     protected override void Start()
     {
-        health.Initialize(initHealth, initHealth);
         mana.Initialize(initMana, initMana);
 
         spellBook = GetComponent<SpellBook>();
@@ -128,7 +124,7 @@ public class Player : Character
         {
             SpellScript s = Instantiate(newSpell.SpellPrefab, exitPoints[(int)exitIndex].position, Quaternion.identity).GetComponent<SpellScript>();
 
-            s.MyTarget = currentTarget;
+            s.Initialize(currentTarget, newSpell.Damage);
         }
 
         StopAttack();

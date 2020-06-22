@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 586115196}
   - component: {fileID: 586115198}
   - component: {fileID: 586115197}
+  - component: {fileID: 978280579482701803}
   m_Layer: 9
   m_Name: HealthFill
   m_TagString: Untagged
@@ -65,15 +66,29 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 76b9d25e7c1e6f24e8a4776c01328a49, type: 3}
-  m_Type: 0
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 0
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &978280579482701803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 586115195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c28f55081c30aa4a9659f156f109118, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statValue: {fileID: 0}
+  lerpSpeed: 5
 --- !u!1 &1118977189
 GameObject:
   m_ObjectHideFlags: 0
@@ -270,11 +285,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 286104490526189643}
+  - component: {fileID: 6722988208157335468}
   - component: {fileID: 286104490526189644}
   - component: {fileID: 286104490526189642}
   - component: {fileID: 460820204061310190}
   - component: {fileID: 9118537842057446559}
-  - component: {fileID: 6722988208157335468}
   m_Layer: 9
   m_Name: SkeletonEnemy
   m_TagString: Enemy
@@ -298,6 +313,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6722988208157335468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 286104490526189645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6692bad2806151b4d9fe737236db70a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1
+  initHealth: 25
+  health: {fileID: 978280579482701803}
+  hitBox: {fileID: 286104491815440059}
+  healthGroup: {fileID: 6989249140941093513}
 --- !u!212 &286104490526189644
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -405,7 +437,7 @@ Animator:
   m_GameObject: {fileID: 286104490526189645}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ec0ab4e90fd896f4b9e03621b37c01d4, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -414,21 +446,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &6722988208157335468
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 286104490526189645}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6692bad2806151b4d9fe737236db70a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 0
-  hitBox: {fileID: 286104491815440059}
-  healthGroup: {fileID: 6989249140941093513}
 --- !u!1 &286104491815440060
 GameObject:
   m_ObjectHideFlags: 0

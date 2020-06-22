@@ -253,12 +253,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
+  initHealth: 100
   health: {fileID: 0}
+  hitBox: {fileID: 0}
   mana: {fileID: 0}
-  spellPrefab:
-  - {fileID: 1729081180690105634, guid: 015f84e01cdc9444a85f83c64c934179, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
   exitPoints:
   - {fileID: 1973407858}
   - {fileID: 215375049}
@@ -277,6 +275,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fdc75c2695974845998bd12e9d67c70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  castingBar: {fileID: 0}
+  spellName: {fileID: 0}
+  castTime: {fileID: 0}
+  icon: {fileID: 0}
+  canvasGroup: {fileID: 0}
+  spells: []
 --- !u!95 &9189116802143430082
 Animator:
   serializedVersion: 3

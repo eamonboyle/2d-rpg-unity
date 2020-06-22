@@ -4,17 +4,25 @@ using UnityEngine;
 
 public class SpellScript : MonoBehaviour
 {
-    public Transform MyTarget { get; set; }
+    public Transform MyTarget { get; private set; }
 
     private Rigidbody2D myRigidbody;
 
     [SerializeField]
     private float speed;
 
+    private int damage;
+
     // Start is called before the first frame update
     void Start()
     {
         myRigidbody = GetComponent<Rigidbody2D>();
+    }
+
+    public void Initialize(Transform target, int damage)
+    {
+        this.MyTarget = target;
+        this.damage = damage;
     }
 
     private void FixedUpdate()
@@ -36,6 +44,8 @@ public class SpellScript : MonoBehaviour
     {
         if (collision.tag == "HitBox" && collision.transform == MyTarget)
         {
+            speed = 0;
+            collision.GetComponentInParent<Enemy>().TakeDamage(damage);
             GetComponent<Animator>().SetTrigger("impact");
             myRigidbody.velocity = Vector2.zero;
             MyTarget = null;
