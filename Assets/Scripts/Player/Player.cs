@@ -11,11 +11,10 @@ public class Player : Character
     [SerializeField]
     private Stat mana;
 
+    private SpellBook spellBook;
+
     private float initHealth = 100;
     private float initMana = 50;
-
-    [SerializeField]
-    private GameObject[] spellPrefab;
 
     [SerializeField]
     private Transform[] exitPoints;
@@ -37,6 +36,8 @@ public class Player : Character
     {
         health.Initialize(initHealth, initHealth);
         mana.Initialize(initMana, initMana);
+
+        spellBook = GetComponent<SpellBook>();
 
         base.Start();
     }
@@ -106,13 +107,15 @@ public class Player : Character
 
     private IEnumerator Attack(int spellIndex)
     {
+        Spell newSpell = spellBook.CastSpell(spellIndex);
+
         attacking = true;
 
         myAnimator.SetBool("attack", attacking);
 
-        yield return new WaitForSeconds(1); // hard coded cast time for debugging
+        yield return new WaitForSeconds(newSpell.CastTime); // hard coded cast time for debugging
 
-        Spell s = Instantiate(spellPrefab[spellIndex], exitPoints[(int)exitIndex].position, Quaternion.identity).GetComponent<Spell>();
+        SpellScript s = Instantiate(newSpell.SpellPrefab, exitPoints[(int)exitIndex].position, Quaternion.identity).GetComponent<SpellScript>();
 
         s.MyTarget = MyTarget;
 

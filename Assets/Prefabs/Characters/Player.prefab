@@ -165,6 +165,7 @@ GameObject:
   - component: {fileID: 9189116802143430093}
   - component: {fileID: 9189116802143430092}
   - component: {fileID: 9189116802143430095}
+  - component: {fileID: 1155713608376684258}
   - component: {fileID: 9189116802143430082}
   - component: {fileID: 1352795397}
   m_Layer: 0
@@ -252,7 +253,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
-  canSeeText: {fileID: 0}
   health: {fileID: 0}
   mana: {fileID: 0}
   spellPrefab:
@@ -264,16 +264,19 @@ MonoBehaviour:
   - {fileID: 215375049}
   - {fileID: 1235336339}
   - {fileID: 2071498183}
-  lineOfSightBlocks:
-  - first: {fileID: 0}
-    second: {fileID: 0}
-  - first: {fileID: 0}
-    second: {fileID: 0}
-  - first: {fileID: 0}
-    second: {fileID: 0}
-  - first: {fileID: 0}
-    second: {fileID: 0}
   fieldOfView: 180
+--- !u!114 &1155713608376684258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9189116802143430094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fdc75c2695974845998bd12e9d67c70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!95 &9189116802143430082
 Animator:
   serializedVersion: 3
