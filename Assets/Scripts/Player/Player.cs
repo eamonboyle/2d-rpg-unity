@@ -112,7 +112,9 @@ public class Player : Character
 
         yield return new WaitForSeconds(1); // hard coded cast time for debugging
 
-        Instantiate(spellPrefab[spellIndex], exitPoints[(int)exitIndex].position, Quaternion.identity);
+        Spell s = Instantiate(spellPrefab[spellIndex], exitPoints[(int)exitIndex].position, Quaternion.identity).GetComponent<Spell>();
+
+        s.MyTarget = MyTarget;
 
         StopAttack();
     }

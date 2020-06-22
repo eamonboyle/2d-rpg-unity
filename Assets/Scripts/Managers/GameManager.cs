@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
             {
                 if (hit.collider.tag == "Enemy")
                 {
-                    player.MyTarget = hit.transform;
+                    player.MyTarget = hit.transform.GetChild(0);
                 }
             }
             else
