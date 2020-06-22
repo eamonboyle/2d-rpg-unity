@@ -1092,6 +1092,7 @@ GameObject:
   - component: {fileID: 794564839}
   - component: {fileID: 794564841}
   - component: {fileID: 794564840}
+  - component: {fileID: 794564842}
   m_Layer: 5
   m_Name: CastingBarBG
   m_TagString: Untagged
@@ -1159,6 +1160,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 794564838}
   m_CullTransparentMesh: 0
+--- !u!225 &794564842
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 794564838}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &839179022
 GameObject:
   m_ObjectHideFlags: 0
@@ -2285,7 +2298,7 @@ GameObject:
   - component: {fileID: 2081110000}
   - component: {fileID: 2081109999}
   m_Layer: 5
-  m_Name: Image
+  m_Name: SpellIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2722,6 +2735,31 @@ PrefabInstance:
       propertyPath: spells.Array.data[2].barColor.a
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1155713608376684258, guid: aacc6746677588c48b03a6b2aa2fa9ec,
+        type: 3}
+      propertyPath: castingBar
+      value: 
+      objectReference: {fileID: 631964862}
+    - target: {fileID: 1155713608376684258, guid: aacc6746677588c48b03a6b2aa2fa9ec,
+        type: 3}
+      propertyPath: spellName
+      value: 
+      objectReference: {fileID: 136411852}
+    - target: {fileID: 1155713608376684258, guid: aacc6746677588c48b03a6b2aa2fa9ec,
+        type: 3}
+      propertyPath: icon
+      value: 
+      objectReference: {fileID: 2081109999}
+    - target: {fileID: 1155713608376684258, guid: aacc6746677588c48b03a6b2aa2fa9ec,
+        type: 3}
+      propertyPath: castTime
+      value: 
+      objectReference: {fileID: 1244375634}
+    - target: {fileID: 1155713608376684258, guid: aacc6746677588c48b03a6b2aa2fa9ec,
+        type: 3}
+      propertyPath: canvasGroup
+      value: 
+      objectReference: {fileID: 794564842}
     - target: {fileID: 9189116802143430093, guid: aacc6746677588c48b03a6b2aa2fa9ec,
         type: 3}
       propertyPath: m_LocalPosition.x

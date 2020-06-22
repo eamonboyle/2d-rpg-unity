@@ -57,6 +57,13 @@ public class Player : Character
         }
     }
 
+    public override void StopAttack()
+    {
+        spellBook.StopCasting();
+
+        base.StopAttack();
+    }
+
     private void GetInput()
     {
         direction = Vector2.zero;
