@@ -31,6 +31,7 @@ public class Player : Character
     {
         direction = Vector2.zero;
 
+        // for debugging health & mana
         if (Input.GetKeyDown(KeyCode.I))
         {
             health.MyCurrentValue -= 10;
@@ -43,6 +44,7 @@ public class Player : Character
             mana.MyCurrentValue += 10;
         }
 
+        // movement inputs
         if (Input.GetKey(KeyCode.W))
         {
             direction += Vector2.up;

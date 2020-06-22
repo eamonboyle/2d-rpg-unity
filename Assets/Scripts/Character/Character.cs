@@ -4,43 +4,70 @@ using UnityEngine;
 
 public abstract class Character : MonoBehaviour
 {
+    public bool Moving
+    {
+        get
+        {
+            return direction.x != 0 || direction.y != 0;
+        }
+    }
+
     [SerializeField]
     private float speed;
 
-    private Animator animator;
+    private Animator myAnimator;
+    private Rigidbody2D myRigidbody;
 
     protected Vector2 direction;
 
     protected virtual void Start()
     {
-        animator = GetComponent<Animator>();
+        myAnimator = GetComponent<Animator>();
+        myRigidbody = GetComponent<Rigidbody2D>();
     }
 
     protected virtual void Update()
+    {
+        HandleLayers();
+    }
+
+    private void FixedUpdate()
     {
         Move();
     }
 
     public void Move()
     {
-        transform.Translate(direction * speed * Time.deltaTime);
+        // move the player with physics
+        // make sure the direction is normalized
+        myRigidbody.velocity = direction.normalized * speed;
+    }
 
+    public void HandleLayers()
+    {
         // animate layers if moving
-        if (direction.x != 0 || direction.y != 0)
+        if (Moving)
         {
-            AnimateMovement(direction);
+            // change to the walk animation layer
+            ActivateLayer("Walk");
+
+            myAnimator.SetFloat("x", direction.x);
+            myAnimator.SetFloat("y", direction.y);
         }
         else
         {
-            animator.SetLayerWeight(1, 0);
+            // go back to the idle layer
+            ActivateLayer("Idle");
         }
     }
 
-    public void AnimateMovement(Vector2 direction)
+    public void ActivateLayer(string layerName)
     {
-        animator.SetLayerWeight(1, 1);
+        for (int i = 0; i < myAnimator.layerCount; i++)
+        {
+            myAnimator.SetLayerWeight(i, 0);
+        }
 
-        animator.SetFloat("x", direction.x);
-        animator.SetFloat("y", direction.y);
+        myAnimator.SetLayerWeight(myAnimator.GetLayerIndex(layerName), 1);
     }
 }
