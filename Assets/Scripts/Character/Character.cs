@@ -11,7 +11,7 @@ public abstract class Character : MonoBehaviour
 
     protected Vector2 direction;
 
-    private void Start()
+    protected virtual void Start()
     {
         animator = GetComponent<Animator>();
     }

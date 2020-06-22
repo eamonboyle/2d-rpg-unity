@@ -4,7 +4,22 @@ using UnityEngine;
 
 public class Player : Character
 {
-    // Update is called once per frame
+    [SerializeField]
+    private Stat health;
+    [SerializeField]
+    private Stat mana;
+
+    private float initHealth = 100;
+    private float initMana = 50;
+
+    protected override void Start()
+    {
+        health.Initialize(initHealth, initHealth);
+        mana.Initialize(initMana, initMana);
+
+        base.Start();
+    }
+
     protected override void Update()
     {
         GetInput();
@@ -15,6 +30,18 @@ public class Player : Character
     private void GetInput()
     {
         direction = Vector2.zero;
+
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            health.MyCurrentValue -= 10;
+            mana.MyCurrentValue -= 10;
+        }
+
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            health.MyCurrentValue += 10;
+            mana.MyCurrentValue += 10;
+        }
 
         if (Input.GetKey(KeyCode.W))
         {
