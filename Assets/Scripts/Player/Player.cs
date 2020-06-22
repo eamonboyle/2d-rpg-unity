@@ -114,6 +114,8 @@ public class Player : Character
 
     private IEnumerator Attack(int spellIndex)
     {
+        Transform currentTarget = MyTarget;
+
         Spell newSpell = spellBook.CastSpell(spellIndex);
 
         attacking = true;
@@ -122,15 +124,23 @@ public class Player : Character
 
         yield return new WaitForSeconds(newSpell.CastTime); // hard coded cast time for debugging
 
-        SpellScript s = Instantiate(newSpell.SpellPrefab, exitPoints[(int)exitIndex].position, Quaternion.identity).GetComponent<SpellScript>();
+        if (currentTarget != null && InLineOfSight())
+        {
+            SpellScript s = Instantiate(newSpell.SpellPrefab, exitPoints[(int)exitIndex].position, Quaternion.identity).GetComponent<SpellScript>();
 
-        s.MyTarget = MyTarget;
+            s.MyTarget = currentTarget;
+        }
 
         StopAttack();
     }
 
     private bool InLineOfSight()
     {
+        if (MyTarget == null)
+        {
+            return false;
+        }
+
         Vector2 directionToTarget = (MyTarget.position - transform.position).normalized;
 
         Vector2 facing = directions[(int)exitIndex]; // direction of facing

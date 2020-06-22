@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(Animator))]
 public abstract class Character : MonoBehaviour
 {
     public bool Moving
@@ -21,6 +23,9 @@ public abstract class Character : MonoBehaviour
     protected Vector2 direction;
     protected bool attacking = false;
     protected Coroutine attackRoutine;
+
+    [SerializeField]
+    protected Transform hitBox;
 
     protected virtual void Start()
     {
@@ -71,6 +76,11 @@ public abstract class Character : MonoBehaviour
 
     public void ActivateLayer(string layerName)
     {
+        if (myAnimator == null)
+        {
+            return;
+        }
+
         for (int i = 0; i < myAnimator.layerCount; i++)
         {
             myAnimator.SetLayerWeight(i, 0);
