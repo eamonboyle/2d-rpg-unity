@@ -32,6 +32,9 @@ public class LevelManager : MonoBehaviour
 
     private void GenerateMap()
     {
+        int height = mapData[0].height;
+        int width = mapData[0].width;
+
         for (int i = 0; i < mapData.Length; i++)
         {
             for (int x = 0; x < mapData[i].width; x++)
@@ -50,6 +53,11 @@ public class LevelManager : MonoBehaviour
                         GameObject go = Instantiate(newElement.ElementPrefab);
                         go.transform.position = new Vector2(xPos, yPos);
                         go.transform.parent = map;
+
+                        if (newElement.TileTag == "Tree")
+                        {
+                            go.GetComponent<SpriteRenderer>().sortingOrder = height * 2 - y * 2;
+                        }
                     }
                 }
             }
