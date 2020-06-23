@@ -228,7 +228,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 2f2886892a475cb4992cdf5d323af9ab, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -280,7 +280,31 @@ MonoBehaviour:
   castTime: {fileID: 0}
   icon: {fileID: 0}
   canvasGroup: {fileID: 0}
-  spells: []
+  spells:
+  - name: Fireball
+    damage: 5
+    icon: {fileID: 21300000, guid: 90229360842ba1a4fba8004501d78e9a, type: 3}
+    speed: 5
+    castTime: 2.5
+    spellPrefab: {fileID: 1729081180690105634, guid: 015f84e01cdc9444a85f83c64c934179,
+      type: 3}
+    barColor: {r: 0.95686275, g: 0.3882353, b: 0.3882353, a: 1}
+  - name: Frostbolt
+    damage: 5
+    icon: {fileID: 21300000, guid: ab31929539b067c418d104e1aad62b21, type: 3}
+    speed: 5
+    castTime: 1.5
+    spellPrefab: {fileID: 1729081180690105634, guid: c90d2b3ed2b49934cbdc88970a7c4603,
+      type: 3}
+    barColor: {r: 0.3764706, g: 0.6745098, b: 0.9254902, a: 1}
+  - name: Thunderbolt
+    damage: 5
+    icon: {fileID: 21300000, guid: c96931f76958f9641a59383e89c5a29a, type: 3}
+    speed: 5
+    castTime: 1
+    spellPrefab: {fileID: 1729081180690105634, guid: ed609560759a7534b9a01f8aaceff530,
+      type: 3}
+    barColor: {r: 1, g: 0.9137255, b: 0.54509807, a: 1}
 --- !u!95 &9189116802143430082
 Animator:
   serializedVersion: 3
